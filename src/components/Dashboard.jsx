@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
-import "../sass/dashboard.scss";
+import "../sass/Dashboard.scss";
 
 function Dashboard() {
   return (
