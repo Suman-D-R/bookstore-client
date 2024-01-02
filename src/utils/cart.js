@@ -28,7 +28,7 @@ export const cartOperations = async (endpoint = "") => {
   export const cartOperationsUpdate = async (endpoint) => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/cart/${endpoint}`,{},
+        `https://bookstore-uooq.onrender.com/cart/${endpoint}`,{},
         {
           headers: headers,
         }
@@ -47,7 +47,7 @@ export const cartOperations = async (endpoint = "") => {
   export const deletFromCart = async (endpoint) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/cart/${endpoint}`,
+        `https://bookstore-uooq.onrender.com/cart/${endpoint}`,
         {
           headers: headers,
         }
