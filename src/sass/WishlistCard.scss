@@ -1,0 +1,36 @@
+.wishlist-card-container{
+    width: 80%;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.wishlist-card-content-1{
+    width: 30%;
+    @include flex-center;
+
+}
+.wishlist-card-content-1 img{
+    height: 150px;
+}
+.wishlist-card-content-2{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+.wishlist-card-content-2 div{
+    span{
+        color: #aaaaaa;
+        text-decoration: line-through;
+    }
+}
+.wishlist-card-content-3{
+    width: 5%;
+    @include flex-center;
+}

@@ -1,0 +1,111 @@
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  background: #b7b7b7 0% 0% no-repeat padding-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-content-box {
+  min-height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.login-box-1 {
+  background-color: white;
+  width: 624px;
+  height: 391px;
+  border-radius: 21px;
+  margin-right: 20%;
+  position: relative;
+}
+.login-box-1 img {
+  width: 245px;
+  height: 245px;
+  opacity: 1;
+  position: absolute;
+  top: 18%;
+  left: 10%;
+  border-radius: 50%;
+}
+.login-box-1 h3{
+    position: absolute;
+    left: 12%;
+    bottom: 10%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login-box-2 {
+  width: 389px;
+  min-height: 425px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 5px 15px #00000029;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  opacity: 1;
+  left: 658px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-page{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login-form{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    justify-content: space-evenly;
+}
+.name-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.firstname-container{
+  width: 48%;
+}
+.lastname-container{
+  width: 48%;
+}
+.button-container{
+    display: flex;
+    justify-content: space-between;
+}
+.button-container Button{
+    width: 40%;
+}
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    min-height: 75%;
+    margin-bottom: 20px;
+}
+@media only screen and (max-width:800px) {
+  .login-box-1{
+    display: none;
+  }
+  .login-box-2 {
+    max-width: 389px;
+    min-height: 425px;
+    position: static !important;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
