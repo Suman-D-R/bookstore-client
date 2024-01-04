@@ -1,19 +1,29 @@
 import axios from "axios";
 
 export const login = async (data) => {
-  const loginData = await axios.post(
-    `https://bookstore-uooq.onrender.com/users/login`,
-    data
-  );
-  return loginData;
+  try {
+    const loginData = await axios.post(
+      "http://localhost:3000/api/v1/users/login",
+      data
+    );
+    return loginData;
+  } catch (error) {
+    return error;
+  }
 };
 
+
 export const register = async (data) => {
-  const redisterData = await axios.post(
-    `https://bookstore-uooq.onrender.com/users`,
+  try
+  {
+    const redisterData = await axios.post(
+    "http://localhost:3000/api/v1/users",
     data
   );
   return redisterData;
+}catch (error) {
+  return error;
+}
 };
 
 export const getUser = async (data) => {
