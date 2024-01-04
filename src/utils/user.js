@@ -3,7 +3,7 @@ import axios from "axios";
 export const login = async (data) => {
   try {
     const loginData = await axios.post(
-      "http://localhost:3000/api/v1/users/login",
+      "https://bookstore-uooq.onrender.com/users/login",
       data
     );
     return loginData;
@@ -17,7 +17,7 @@ export const register = async (data) => {
   try
   {
     const redisterData = await axios.post(
-    "http://localhost:3000/api/v1/users",
+    "https://bookstore-uooq.onrender.com/users",
     data
   );
   return redisterData;

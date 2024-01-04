@@ -12,6 +12,8 @@ import Divider from "@mui/material/Divider";
 import { useState } from "react";
 import { login, register, getUser } from "../utils/user";
 import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,6 +33,16 @@ function Login() {
     firstName: false,
     lastName: false,
     confirmPassword: false,
+  });
+
+  const [alert, setAlert] = useState({
+    open: false,
+    message: "",
+  });
+
+  const [signupAlert, setSignupAlert] = useState({
+    open: false,
+    message: "",
   });
 
   const navigate = useNavigate();
@@ -77,52 +89,112 @@ function Login() {
     event.preventDefault();
   };
 
-  const handleSubmitLogin = async () => {
-    try {
-      if (data.email === "" || data.password === "") {
-        setErrors({
-          email: data.email === "",
-          password: data.password === "",
+  const handeSubmitLogin = ()=>{
+    const getFunction = async () => {
+      try {
+        if (data.email === "" || data.password === "") {
+          setErrors({
+            email: data.email === "",
+            password: data.password === "",
+          });
+          setAlert({
+            open: true,
+            message: "Please fill in all required fields.",
+          });
+        } else {
+          const response = await login(data);
+          console.log(response);
+          if (response.status == 200) {
+  
+            const accessToken = response.data.data;
+            localStorage.setItem("accessTokenBookstore", accessToken);
+  
+            const userData = await getUser(accessToken);
+  
+            localStorage.setItem("name", userData.data.data.firstName);
+            navigate("/home");
+          } else {
+            console.log(response)
+            setAlert({
+              open: true,
+              message: `Login failed. ${response.response.data.message}`,
+            });
+            setTimeout(() => {
+              setAlert({
+                open: false,
+                message: "",
+              });
+            }, 2000);
+          }
+        }
+      } catch (error) {
+        console.error("Error during login:", error);
+        setAlert({
+          open: true,
+          message: `Login failed. Please try again. ${error.message} `,
         });
-      } else {
-        const response = await login(data);
-        const accessToken = response.data.data;
-        localStorage.setItem("accessTokenBookstore", accessToken);
-
-        const userData = await getUser(accessToken);
-
-        localStorage.setItem("name", userData.data.data.firstName);
-        navigate("/home");
       }
-    } catch (error) {
-      console.error("Error during login:", error);
-    }
-  };
+    };
+    getFunction();
+  }
 
-  const handleSubmitRegister = async () => {
-    try {
-      if (
-        data.email === "" ||
-        data.password === "" ||
-        data.firstName === "" ||
-        data.confirmPassword === "" ||
-        data.lastName === ""
-      ) {
-        setErrors({
-          email: data.email === "",
-          password: data.password === "",
-          firstName: data.firstName === "",
-          lastName: data.lastName === "",
-          confirmPassword: data.confirmPassword === "",
+  const handleSubmitRegister = ()=>{
+    const getFunction =async () => {
+      try {
+        if (
+          data.email === "" ||
+          data.password === "" ||
+          data.firstName === "" ||
+          data.confirmPassword === "" ||
+          data.lastName === ""
+        ) {
+          setErrors({
+            email: data.email === "",
+            password: data.password === "",
+            firstName: data.firstName === "",
+            lastName: data.lastName === "",
+            confirmPassword: data.confirmPassword === "",
+          });
+        } else {
+          const response =  await register(data);
+          if (response.status == 201) {
+            setAlert({
+              open: false,
+            });
+            setSignupAlert({
+              open: true,
+              message: "Sign up successful!",
+            });
+            setTimeout(() => {
+              setSignupAlert({
+                open: false,
+                message: "",
+              });
+            }, 2000);
+            setShowLoginSignUp(true);
+          } else {
+            setAlert({
+              open: true,
+              message: `Login failed. ${response.response.data.message}`,
+            });
+            setTimeout(() => {
+              setAlert({
+                open: false,
+                message: "",
+              });
+            }, 3000);
+          }
+        }
+      } catch (error) {
+        console.error("Error during registration:", error);
+        setAlert({
+          open: true,
+          message: `Registration failed. Please try again. `,
         });
-      } else {
-        await register(data);
-        setShowLoginSignUp(true);
       }
-    } catch (error) {
-      console.error("Error during registration:", error);
-    }
-  };
+    };
+    getFunction();
+  }
 
   return (
     <div className="login-container">
@@ -192,9 +264,12 @@ function Login() {
                 </FormControl>
               </div>
               <Button
-                onClick={handleSubmitLogin}
+                onClick={handeSubmitLogin}
                 variant="contained"
-                sx={{ backgroundColor: "#A03037" }}
+                sx={{
+                  backgroundColor: "#A03037",
+                  "&:hover": { backgroundColor: "#A04057" },
+                }}
               >
                 Login
               </Button>
@@ -280,7 +355,7 @@ function Login() {
                 <p>ConfirmPassword</p>
                 <TextField
                   error={errors.confirmPassword}
-                  helperText={errors.confirmPassword && "required"}
+                  helperText={errors.confirmPassword && "password not match"}
                   onChange={handleConfirmPassword}
                   sx={{ width: "100%", color: "#FF001C" }}
                   size="small"
@@ -289,7 +364,10 @@ function Login() {
               <Button
                 onClick={handleSubmitRegister}
                 variant="contained"
-                sx={{ backgroundColor: "#A03037" }}
+                sx={{
+                  backgroundColor: "#A03037",
+                  "&:hover": { backgroundColor: "#A03037" },
+                }}
               >
                 Signup
               </Button>
@@ -297,10 +375,22 @@ function Login() {
           )}
         </div>
       </div>
+      <div className="alart-container">
+        {alert.open && (
+          <Alert severity="error">
+            <AlertTitle>Error</AlertTitle>
+            {alert.message}
+          </Alert>
+        )}
+        {signupAlert.open && (
+          <Alert severity="success">
+            <AlertTitle>Success</AlertTitle>
+            {signupAlert.message}
+          </Alert>
+        )}
+      </div>
     </div>
   );
 }
 
 export default Login;
-
-
