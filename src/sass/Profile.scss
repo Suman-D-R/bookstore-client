@@ -54,3 +54,8 @@
 .split-textfield{
     width: 45%;
 }
+@media only screen and (max-width:800px) {
+    .profile-container{
+        width: 100%;
+    }
+}

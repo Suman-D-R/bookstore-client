@@ -8,7 +8,6 @@ import Divider from "@mui/material/Divider";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
-import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
 import Popper from "@mui/material/Popper";
 import { Button } from "@mui/material";
@@ -137,7 +136,7 @@ function Header({ home = true }) {
               <div>
                 <div style={{ cursor: "pointer" }} onClick={handleClick}>
                   <PermIdentityIcon style={{ color: "white" }} />
-                  <p>profile</p>
+                  <p className="iconname">profile</p>
                 </div>
                 <Popper
                   id={id}
@@ -174,7 +173,7 @@ function Header({ home = true }) {
               <Divider orientation="vertical" variant="middle" flexItem />
               <div style={{ cursor: "pointer" }}>
                 <ShoppingCartIcon style={{ color: "white" }} />
-                <p>cart</p>
+                <p className="iconname">cart</p>
               </div>
               <Divider orientation="vertical" variant="middle" flexItem />
             </div>
@@ -244,7 +243,7 @@ function Header({ home = true }) {
               <div>
                 <div style={{ cursor: "pointer" }} onClick={handleClick}>
                   <PermIdentityIcon style={{ color: "white" }} />
-                  <p>profile</p>
+                  <p className="iconname">profile</p>
                 </div>
                 <Popper
                   id={id}
@@ -281,7 +280,7 @@ function Header({ home = true }) {
             <Divider orientation="vertical" variant="middle" flexItem />
             <div style={{ cursor: "pointer" }} onClick={hangleCart}>
               <ShoppingCartIcon style={{ color: "white" }} />
-              <p>cart</p>
+              <p className="iconname">cart</p>
             </div>
             <Divider orientation="vertical" variant="middle" flexItem />
           </div>

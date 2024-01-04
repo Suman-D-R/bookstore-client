@@ -85,3 +85,31 @@
     font-size:10px ;
   }
 }
+
+@media only screen and (max-width: 450px) {
+  .container-card {
+    width: 130px;
+
+  }
+  .outof-stock {
+    width: 100%;
+    height: 100%;
+  }
+  .container-card-1{
+    height: 100px;
+  }
+  .container-card-1 img {
+    height: 100px;
+    width: 80px;
+  }
+  .container-card-2 {
+    height: 140px;
+  }
+  .container-card-2 h3,.container-card-2 div h3{
+    font-size: 12px;
+  }
+  .container-card-2 p{
+    font-size:10px ;
+  }
+}
+
