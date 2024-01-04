@@ -145,7 +145,7 @@ export default function ViewBook() {
                     size="medium"
                     variant="contained"
                   >
-                    {notify ? "Got It" : "Fotify Me"}
+                    {notify ? "Got It" : "Notify Me"}
                   </Button>
                 )}
                 <Button

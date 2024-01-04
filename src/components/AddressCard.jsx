@@ -81,7 +81,7 @@ function AddressCard({ data ,setData}) {
           <div>
             <FormControl>
               <FormLabel id="demo-row-radio-buttons-group-label">
-                Gender
+                Type
               </FormLabel>
               <RadioGroup
                 row
